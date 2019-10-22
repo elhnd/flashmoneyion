@@ -1,0 +1,51 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <form #f="ngForm" (ngSubmit)="onLogin(f.value)" >
+   <ion-item>
+    <ion-input type="text" name="username" ngModel placeholder="Username"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-input type="password" name="password" ngModel placeholder="Mot de passe"></ion-input>
+   </ion-item>
+   <ion-button type="submit" expand="block">Connection </ion-button>
+ </form>
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container" *ngIf="!post; else forminfo" novalidate> 
+    <form [formGroup]="formGroup" (ngSubmit)="onLogin(formGroup.value)" class="form">
+  
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Username" formControlName="username">
+        <mat-error *ngIf="!formGroup.controls['username'].valid && formGroup.controls['username'].touched">
+          {{ getUsername() }}
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="form-element">
+        <input matInput type="password" placeholder="Password" formControlName="password">
+        <mat-hint>Choose a password of at least eight characters, one uppercase letter and one number</mat-hint>
+        <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
+          {{ getErrorPassword() }}
+        </mat-error>
+      </mat-form-field>
+  
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit Form</button>
+      </div>
+  
+    </form>
+  </div>
+</ion-content>
+

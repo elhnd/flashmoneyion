@@ -1,5 +1,7 @@
 {
   "name": "moneyflashion",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
