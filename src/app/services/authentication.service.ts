@@ -9,7 +9,7 @@ export class AuthenticationService {
 
  
   host2:string = "http://localhost:8000/api/login_check";
-  jwt:string;
+  public jwt:string;
   username:string;
   roles:string;
 

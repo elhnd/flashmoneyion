@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detailtrans</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Fermez</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-content fullscreen>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Transaction</ion-card-subtitle>
+        <ion-card-title>MoneyFlash</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-label class="ion-padding" >
+          <h1>Montant : {{detailstrans.montantTransfert}} FCFA</h1>
+          <h2>Frais transaction : {{detailstrans.fraisTransaction}} FCFA</h2>
+          <h2>Totalt transaction : {{detailstrans.totalEnvoi}} FCFA</h2>
+          <h2>Date transaction : {{detailstrans.createdAt | date:'short'}}</h2>
+          <h1>-------------Bénéficiaire-------------</h1>
+          <h2>Nom : {{detailstrans.nomCompletB}}</h2>
+          <h2>Téléphone : {{detailstrans.telB}}</h2>
+          <h2>N* CIN : {{detailstrans.cinB}}</h2>
+          <h2>Adresse : {{detailstrans.adresseB}}</h2>
+          <h1>-------------Expéditeur---------------</h1>
+          <h2>Nom : {{detailstrans.nomCompletE}}</h2>
+          <h2>Téléphone : {{detailstrans.telE}}</h2>
+          <h2>N* CIN : {{detailstrans.cinE}}</h2>
+          <h2>Adresse : {{detailstrans.adresseE}}</h2>
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-label class="ion-padding" >
+          <h1>{{detailstrans.statut}}</h1>
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</ion-content>

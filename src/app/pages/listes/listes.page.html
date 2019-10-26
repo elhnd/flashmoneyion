@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>listes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="transperiodeForm"   (keyup)="transact(transperiodeForm.value)"  >
+    <ion-item>
+      <ion-label>Date de début</ion-label>
+      <ion-datetime displayFormat="DD MMM YYYY" value="" formControlName="debut"  placeholder="Select Date" useValueAsDate></ion-datetime>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Date de fin</ion-label>
+      <ion-datetime displayFormat="DD MMM YYYY" value="" formControlName="fin" placeholder="Select Date" useValueAsDate></ion-datetime>
+    </ion-item>
+  </form>
+  <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+    <mat-tab label="Transfert"> 
+        <ion-list  >
+            <ion-item #order button *ngFor="let trans of list | orderBy:order" (click)="myDetails(trans.id)" >
+                <ion-ripple-effect></ion-ripple-effect>
+                <ion-label class="ion-padding" >
+                    <h2>Montant : {{trans.montantTransfert}} FCFA</h2>
+                    <h3>Date transaction : {{trans.createdAt | date:'short'}}</h3>
+                    <h3>Code transaction : {{trans.codeGenere}}</h3>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </mat-tab>
+    <mat-tab label="Commission"> 
+            <ion-list>
+                <ion-item #order  *ngFor="let trans of list | orderBy:order ">
+                    <ion-label class="ion-padding" >
+                        <h2>Commission Totale : {{trans.fraisTransaction}} FCFA</h2>
+                        <h3 >Date transaction : {{trans.createdAt | date:'short'}}</h3>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+    </mat-tab> 
+  </mat-tab-group>
+</ion-content>

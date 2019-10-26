@@ -5,30 +5,146 @@
 </ion-header>
 
 <ion-content>
-  <mat-tab-group>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <ion-icon class="example-tab-icon" ios="ios-redo" md="md-redo"></ion-icon>
-      ENVOI
-    </ng-template>
-    Content 1
-  </mat-tab>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Envoi
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="transGroup">
 
-  <mat-tab>
-    <ng-template mat-tab-label>
-     <ion-icon class="example-tab-icon" ios="ios-undo" md="md-undo"></ion-icon>
-      RETRAIT
-    </ng-template>
-    Content 2
-  </mat-tab>
+      <mat-form-field>
+        <input matInput placeholder="Nom Expéditeur" formControlName="nom_complet_e">
+      <mat-error *ngIf="!transGroup.controls['nom_complet_e'].valid && transGroup.controls['nom_complet_e'].touched">
+        {{ getErrorNomE() }}
+      </mat-error>
+      
+      </mat-form-field>
 
-  <!-- <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-      Third
-    </ng-template>
-    Content 3
-  </mat-tab> -->
-</mat-tab-group>
+      <mat-form-field>
+        <input matInput placeholder="Téléphone Expéditeur" formControlName="tel_e">
+        <mat-error *ngIf="!transGroup.controls['tel_e'].valid && transGroup.controls['tel_e'].touched">
+        {{ getErrorTelE() }}
+        </mat-error>
+      </mat-form-field>
 
+      <mat-form-field>
+        <input matInput placeholder="Adresse Expéditeur" formControlName="adresse_e">
+        <mat-error *ngIf="!transGroup.controls['adresse_e'].valid && transGroup.controls['adresse_e'].touched">
+        {{ getErrorAdresseE() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="CIN Expéditeur" formControlName="cin_e">
+        <mat-error *ngIf="!transGroup.controls['cin_e'].valid && transGroup.controls['cin_e'].touched">
+        {{ getErrorCinE() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Nom Bénéficiaire" formControlName="nom_complet_b">
+        <mat-error *ngIf="!transGroup.controls['nom_complet_b'].valid && transGroup.controls['nom_complet_b'].touched">
+        {{ getErrorNomB() }}
+      </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Téléphone Bénéficiaire" formControlName="tel_b">
+        <mat-error *ngIf="!transGroup.controls['tel_b'].valid && transGroup.controls['tel_b'].touched">
+        {{ getErrorTelB() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Adresse Bénéficiaire" formControlName="adresse_b">
+        <mat-error *ngIf="!transGroup.controls['adresse_b'].valid && transGroup.controls['adresse_b'].touched">
+        {{ getErrorAdresseB() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Montant Transfert" formControlName="montant_transfert">
+         <mat-error *ngIf="!transGroup.controls['montant_transfert'].valid && transGroup.controls['montant_transfert'].touched">
+        {{ getErrorMontant() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Frais Transfert">
+      </mat-form-field>
+      <p><button (click)="envoi()" mat-flat-button color="primary">Envoyez</button></p>
+     </form>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Retrait
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="retraitForm">
+
+        <mat-form-field>
+        <input matInput placeholder="Code transaction" formControlName="code_genere">
+        </mat-form-field>
+
+        <mat-form-field *ngIf="affiche">
+          <input matInput placeholder="CIN Bénéficiaire" formControlName="cin_b">
+          <mat-error *ngIf="!transGroup.controls['cin_e'].valid && transGroup.controls['cin_e'].touched">
+            {{ getErrorCinE() }}
+            </mat-error>
+        </mat-form-field>
+
+        <p *ngIf="!affiche"><button (click)="findCodeOk()" mat-flat-button color="primary">Cherchez</button></p>
+        <p *ngIf="affiche" ><button (click)="retrait()" mat-flat-button color="primary">Retirez</button></p>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card text-center padding color="primary">
+          <ion-icon ios="ios-swap" md="md-swap"></ion-icon>
+          <h2>Compte</h2>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card text-center padding color="primary">
+          <ion-icon name="people"></ion-icon>
+          <h2>Group</h2>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <ion-card text-center padding color="primary">
+          <ion-icon ios="ios-swap" md="md-swap"></ion-icon>
+          <h2>Compte</h2>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card text-center padding color="primary">
+          <ion-icon name="people"></ion-icon>
+          <h2>Group</h2>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+
+<!--<form >
+  <ion-item>
+    <ion-label>Todo</ion-label>
+    <ion-input type="text"  name="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Description</ion-label>
+    <ion-textarea  name="description"></ion-textarea>
+  </ion-item>
+  <button ion-button type="submit" block>Add Todo</button>
+</form> -->
